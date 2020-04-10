@@ -1,5 +1,10 @@
 class Coin < ApplicationRecord
 
+  has_many :user_coins
+  has_many :users, through: :user_coins
+
+  validates :name, :ticker, presence: true
+
   @@base_uri = 'https://api.coincap.io/v2/assets/'
 
   def self.new_lookup(coin_name)

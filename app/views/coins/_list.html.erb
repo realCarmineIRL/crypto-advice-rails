@@ -1,0 +1,25 @@
+<%= render  "users/results" %>
+  <div class="row">
+    <div class="col-9">
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Ticker</th>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @tracked_coins.each do |coin| %>
+            <tr>
+              <th scope="row"><%= coin.ticker %></th>
+              <td><%= coin.name %></td>
+              <td><%= coin.last_price %></td>
+              <td></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>

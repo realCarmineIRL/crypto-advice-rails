@@ -5,14 +5,20 @@ class CoinsController < ApplicationController
     if params[:coin].present?
       @coin = Coin.new_lookup(params[:coin])
       if @coin
-        render 'users/my_portfolio'
+        respond_to do |format|
+          format.js { render partial: 'users/results' }
+        end
       else
-        flash[:alert] = "Please enter a valid coin name to search"
-        redirect_to my_portfolio_path
+        respond_to do |format|
+          flash.now[:alert] = "Please enter a valid coin name to search"
+          format.js { render partial: 'users/results' }
+        end
       end
     else
-      flash[:alert] = "Please enter a coin name to search"
-      redirect_to my_portfolio_path
+      respond_to do |format|
+        flash.now[:alert] = "Please enter a coin name to search"
+        format.js { render partial: 'users/results' }
+      end
     end
   end
 end
