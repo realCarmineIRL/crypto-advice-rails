@@ -17,4 +17,6 @@
 </div>
 <div id="results">
 </div>
-<%= render  "users/results" %>
+<% if !@tracked_coins.empty? %>
+  <%= render 'coins/list' %>
+<% end %>
