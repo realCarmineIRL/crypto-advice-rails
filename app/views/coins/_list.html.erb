@@ -16,7 +16,7 @@
               <th scope="row"><%= coin.ticker %></th>
               <td><%= coin.name %></td>
               <td><%= coin.last_price %></td>
-              <td></td>
+              <td><%= link_to  "Remove", user_coin_path(coin), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-sm btn-warning" %></td>
             </tr>
           <% end %>
         </tbody>
