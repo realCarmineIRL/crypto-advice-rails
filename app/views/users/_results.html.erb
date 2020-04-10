@@ -1,11 +1,20 @@
-<div class="results-block">
-    <%= render 'layouts/messages' %>
-</div>
-
 <% if @coin %>
   <div class="card card-header results-block">
     <strong>Symbol: </strong> <%= @coin.ticker %>
     <strong>Name: </strong> <%= @coin.name %>
     <strong>Price: </strong> <%= @coin.last_price %>
+    <% if current_user.can_track_coin?(@coin.name) %>
+      <%= link_to  "Add to portfolio", user_coins_path(user: current_user, name: @coin.name), class: "btn btn-xs btn-success", method: :post %>
+    <% else %>
+      <span class="badge badge-secondary">
+        You are already tracking
+        <% if !current_user.under_coin_limit? %>
+          10 coins
+        <% end %>
+        <% if current_user.coin_already_tracked?(@coin.name) %>
+          this coin
+        <% end %>
+      </span>
+    <% end %>
   </div>
 <% end %>

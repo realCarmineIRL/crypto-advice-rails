@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :user_coins
+  resources :user_coins, only: [:create, :destroy]
   devise_for :users
   root :to => 'welcome#index'
   get 'welcome/index'
