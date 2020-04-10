@@ -20,4 +20,9 @@ class User < ApplicationRecord
   def can_track_coin?(name)
     under_coin_limit? && !coin_already_tracked?(name)
   end
+  
+  def full_name
+    return "#{first_name} #{last_name}" if first_name || last_name
+    "Anonymous"
+  end
 end
