@@ -1,8 +1,11 @@
 <h1>Welcome to Crypto Advice Ultimate</h1>
 
-<div class="col-9 search-area">
+<div class="col-9 search-area d-flex justify-content-center">
   <h3>You are tracking <%= @coins_count %> coins in your portfolio</h3>
-  <div class="col-9 d-flex justify-content-center">
-    <%= link_to 'My Portfolio', my_portfolio_path, class: "btn btn-primary" %>
-  </div>
+</div>
+<div class="col-9 search-area d-flex justify-content-center">
+  <h1>Crypto Sentiment score: <%= @sentiment_score %>% </h1>
+</div>
+<div class="col-9 search-area d-flex justify-content-center">
+  <%= link_to 'My Portfolio', my_portfolio_path, class: "btn btn-primary" %>
 </div>
