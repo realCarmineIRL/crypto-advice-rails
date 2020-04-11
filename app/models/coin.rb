@@ -9,8 +9,7 @@ class Coin < ApplicationRecord
 
   def self.new_lookup(name)
     coin_name = name.downcase
-    uri = URI(@@base_uri + coin_name)
-    res = JSON.parse(Net::HTTP.get(uri))["data"]
+    res = get_coin_info(coin_name)
 
     begin
       new(ticker: res["symbol"], name: coin_name, last_price: res["priceUsd"].to_f.round(2))
@@ -21,5 +20,19 @@ class Coin < ApplicationRecord
 
   def self.check_db(name)
     where(name: name).first
+  end
+
+  def self.update_price(name)
+    coin = where(name: name).first
+    res = get_coin_info(name)
+
+    coin.last_price = res["priceUsd"].to_f.round(2)
+
+    coin.save
+  end
+
+  def self.get_coin_info(name)
+    uri = URI(@@base_uri + name)
+    JSON.parse(Net::HTTP.get(uri))["data"]
   end
 end
