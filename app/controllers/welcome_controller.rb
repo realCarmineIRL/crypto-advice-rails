@@ -5,6 +5,7 @@ class WelcomeController < ApplicationController
   end
 
   def sentiment_score
-    90
+    sentiment = Sentiment.first
+    sentiment.score
   end
 end
